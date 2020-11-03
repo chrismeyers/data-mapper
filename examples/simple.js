@@ -5,12 +5,11 @@ const { convert } = dataMapper;
 const { resolveValidator, resolveMapper } = dataMapper.resolvers;
 
 const input = {
-  weird_company_name: '321 gnitset',
-  reversed_flag: false,
+  temp: 17,
 };
 
 try {
-  const map = convert(resolveValidator('old'))(resolveMapper('new'));
+  const map = convert(resolveValidator('c'))(resolveMapper('f'));
 
   (async () => {
     try {

@@ -1,34 +1,62 @@
 const validators = require('../../lib/validators');
 const mappers = require('../../lib/mappers');
 
-describe('new mapper translation', () => {
+describe('fahrenheit mapper translation', () => {
   test('if it fails schema validation', async () => {
     const input = { apples: true };
-    const validator = validators.old;
+    const validator = validators.c;
 
-    await expect(mappers.new(input, validator)).rejects.toThrow();
+    await expect(mappers.f(input, validator)).rejects.toThrow();
   });
 
   test('if it passes schema validation', async () => {
     const input = {
-      weird_company_name: 'test',
-      reversed_flag: false,
+      temp: 123,
     };
-    const validator = validators.old;
+    const validator = validators.c;
 
-    await expect(mappers.new(input, validator)).resolves;
+    await expect(mappers.f(input, validator)).resolves;
   });
 
   test('if it returns the expected values', async () => {
     const input = {
-      weird_company_name: 'tset',
-      reversed_flag: false,
+      temp: 17,
     };
-    const validator = validators.old;
+    const validator = validators.c;
 
-    await expect(mappers.new(input, validator)).resolves.toEqual({
-      company_name: 'test',
-      flag: true,
+    await expect(mappers.f(input, validator)).resolves.toEqual({
+      temp: 62.6,
+      units: 'fahrenheit',
+    });
+  });
+});
+
+describe('celsius mapper translation', () => {
+  test('if it fails schema validation', async () => {
+    const input = { apples: true };
+    const validator = validators.f;
+
+    await expect(mappers.c(input, validator)).rejects.toThrow();
+  });
+
+  test('if it passes schema validation', async () => {
+    const input = {
+      temp: 123,
+    };
+    const validator = validators.f;
+
+    await expect(mappers.c(input, validator)).resolves;
+  });
+
+  test('if it returns the expected values', async () => {
+    const input = {
+      temp: 17,
+    };
+    const validator = validators.f;
+
+    await expect(mappers.c(input, validator)).resolves.toEqual({
+      temp: -8.333333333333334,
+      units: 'celsius',
     });
   });
 });

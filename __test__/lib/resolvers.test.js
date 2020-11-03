@@ -9,7 +9,7 @@ describe('validator resolution', () => {
 
   test('if it loads a validator that exists', () => {
     expect(() => {
-      resolveValidator('old');
+      resolveValidator('c');
     }).not.toThrow();
   });
 });
@@ -23,7 +23,7 @@ describe('mapper resolution', () => {
 
   test('if it loads a mapper that exists', () => {
     expect(() => {
-      resolveMapper('new');
+      resolveMapper('f');
     }).not.toThrow();
   });
 });
