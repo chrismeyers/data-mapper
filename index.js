@@ -1,12 +1,21 @@
-const mapper = require('./mapper');
+const convert = require('./lib/convert');
 
 const input = {
   weird_company_name: '321 gnitset',
   reversed_flag: false,
 };
 
-const mapper1 = mapper('old')('new');
+try {
+  const map = convert('old')('new');
 
-(async () => {
-  console.log(await mapper1(input));
-})();
+  (async () => {
+    try {
+      const result = await map(input);
+      console.log(result);
+    } catch (error) {
+      console.error(error.errors);
+    }
+  })();
+} catch (error) {
+  console.error(error.message);
+}
