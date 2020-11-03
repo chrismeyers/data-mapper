@@ -1,4 +1,5 @@
 const convert = require('./lib/convert');
+const { resolveValidator, resolveMapper } = require('./lib/resolvers');
 
 const input = {
   weird_company_name: '321 gnitset',
@@ -6,7 +7,7 @@ const input = {
 };
 
 try {
-  const map = convert('old')('new');
+  const map = convert(resolveValidator('old'))(resolveMapper('new'));
 
   (async () => {
     try {
