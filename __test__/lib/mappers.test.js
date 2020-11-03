@@ -1,7 +1,7 @@
 const validators = require('../../lib/validators');
 const mappers = require('../../lib/mappers');
 
-describe('fahrenheit mapper translation', () => {
+describe('fahrenheit mapper transformation', () => {
   test('if it fails schema validation', async () => {
     const input = { apples: true };
     const validator = validators.c;
@@ -31,7 +31,7 @@ describe('fahrenheit mapper translation', () => {
   });
 });
 
-describe('celsius mapper translation', () => {
+describe('celsius mapper transformation', () => {
   test('if it fails schema validation', async () => {
     const input = { apples: true };
     const validator = validators.f;
