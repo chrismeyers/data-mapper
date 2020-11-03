@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
 const dataMapper = require('..');
 
-const convert = dataMapper.convert;
+const { convert } = dataMapper;
 const { resolveValidator, resolveMapper } = dataMapper.resolvers;
 
 const input = {

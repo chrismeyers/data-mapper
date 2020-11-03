@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const yup = require('yup');
 const convert = require('../../lib/convert');
 
