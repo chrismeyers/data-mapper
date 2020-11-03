@@ -1,4 +1,3 @@
-const yup = require('yup');
 const validators = require('../../lib/validators');
 const mappers = require('../../lib/mappers');
 
