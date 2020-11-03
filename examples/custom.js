@@ -20,17 +20,8 @@ const customMapper = async (data, validator) => {
   };
 };
 
-try {
-  const map = convert(customValidator)(customMapper);
+const map = convert(customValidator)(customMapper);
 
-  (async () => {
-    try {
-      const result = await map(input);
-      console.log(result);
-    } catch (error) {
-      console.error(error.errors);
-    }
-  })();
-} catch (error) {
-  console.error(error.message);
-}
+map(input)
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error.errors));
