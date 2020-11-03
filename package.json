@@ -1,7 +1,7 @@
 {
   "name": "data-mapper",
   "version": "1.0.0",
-  "description": "",
+  "description": "A data shapeshifting library",
   "main": "index.js",
   "scripts": {
     "test": "jest",
