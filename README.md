@@ -1,5 +1,5 @@
-# data-mapper
-This package provides a data validation and transformation pipeline. Due to the functional nature of this package, it's easy to swap components of the pipeline to generate different transformations dynamically.
+# data-shifter
+This package provides a data validation and transformation pipeline. Due to the functional nature of this package, it's easy to swap the components of the pipeline to dynamically generate different transformations.
 
 ## Usage
 The `convert` module leverages currying to build this pipeline:

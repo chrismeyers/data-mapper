@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-const dataMapper = require('..');
+const dataShifter = require('..');
 
-const { convert } = dataMapper;
-const { resolveValidator, resolveMapper } = dataMapper.resolvers;
+const { convert } = dataShifter;
+const { resolveValidator, resolveMapper } = dataShifter.resolvers;
 
 const input = {
   temp: 17,

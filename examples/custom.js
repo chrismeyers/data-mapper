@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 const yup = require('yup');
-const dataMapper = require('..');
+const dataShifter = require('..');
 
-const { convert } = dataMapper;
+const { convert } = dataShifter;
 
 const input = {
   word: 'gnitset',
