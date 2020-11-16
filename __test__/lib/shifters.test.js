@@ -1,4 +1,3 @@
-const validators = require('../../lib/validators');
 const shifters = require('../../lib/shifters');
 
 describe('fahrenheit shifter transformation', () => {
@@ -19,9 +18,8 @@ describe('celsius shifter transformation', () => {
     const input = {
       temp: 17,
     };
-    const validator = validators.f;
 
-    expect(shifters.c(input, validator)).toEqual({
+    expect(shifters.c(input)).toEqual({
       temp: -8.333333333333334,
       units: 'celsius',
     });
