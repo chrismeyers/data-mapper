@@ -1,6 +1,6 @@
 {
   "name": "data-shifter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A data shapeshifting library",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "lint": "eslint . --ext .js || true"
   },
   "keywords": [],
-  "author": "Chris Meyers <chris@chrismeyers.info> (https://chrismeyers.info)",
+  "author": "Chris Meyers <chris@chrismeyers.info>",
   "license": "ISC",
   "repository": "https://github.com/chrismeyers/data-shifter",
   "dependencies": {
