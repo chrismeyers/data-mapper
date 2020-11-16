@@ -2,29 +2,12 @@ const validators = require('../../lib/validators');
 const mappers = require('../../lib/mappers');
 
 describe('fahrenheit mapper transformation', () => {
-  test('if it fails schema validation', async () => {
-    const input = { apples: true };
-    const validator = validators.c;
-
-    await expect(mappers.f(input, validator)).rejects.toThrow();
-  });
-
-  test('if it passes schema validation', async () => {
-    const input = {
-      temp: 123,
-    };
-    const validator = validators.c;
-
-    await expect(mappers.f(input, validator)).resolves;
-  });
-
-  test('if it returns the expected values', async () => {
+  test('if it returns the expected values', () => {
     const input = {
       temp: 17,
     };
-    const validator = validators.c;
 
-    await expect(mappers.f(input, validator)).resolves.toEqual({
+    expect(mappers.f(input)).toEqual({
       temp: 62.6,
       units: 'fahrenheit',
     });
@@ -32,29 +15,13 @@ describe('fahrenheit mapper transformation', () => {
 });
 
 describe('celsius mapper transformation', () => {
-  test('if it fails schema validation', async () => {
-    const input = { apples: true };
-    const validator = validators.f;
-
-    await expect(mappers.c(input, validator)).rejects.toThrow();
-  });
-
-  test('if it passes schema validation', async () => {
-    const input = {
-      temp: 123,
-    };
-    const validator = validators.f;
-
-    await expect(mappers.c(input, validator)).resolves;
-  });
-
-  test('if it returns the expected values', async () => {
+  test('if it returns the expected values', () => {
     const input = {
       temp: 17,
     };
     const validator = validators.f;
 
-    await expect(mappers.c(input, validator)).resolves.toEqual({
+    expect(mappers.c(input, validator)).toEqual({
       temp: -8.333333333333334,
       units: 'celsius',
     });

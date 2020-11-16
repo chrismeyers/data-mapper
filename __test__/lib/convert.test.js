@@ -9,13 +9,11 @@ describe('transformation pipeline', () => {
       apples: yup.boolean().required(),
     });
 
-    const customMapper = async (data, validator) => {
-      await validator.validate(data);
-    };
+    const customMapper = () => {};
 
-    const map = convert(customValidator)(customMapper);
-
-    await expect(map(input)).rejects.toThrow();
+    await expect(
+      convert(customValidator)(customMapper)(input)
+    ).rejects.toThrow();
   });
 
   test('if it proceeds converting data with the correct shape', async () => {
@@ -25,13 +23,9 @@ describe('transformation pipeline', () => {
       apples: yup.boolean().required(),
     });
 
-    const customMapper = async (data, validator) => {
-      await validator.validate(data);
-    };
+    const customMapper = () => {};
 
-    const map = convert(customValidator)(customMapper);
-
-    await expect(map(input)).resolves;
+    await expect(convert(customValidator)(customMapper)(input)).resolves;
   });
 
   test('if it converts data correctly', async () => {
@@ -41,17 +35,15 @@ describe('transformation pipeline', () => {
       apples: yup.boolean().required(),
     });
 
-    const customMapper = async (data, validator) => {
-      const valid = await validator.validate(data);
-
+    const customMapper = (data) => {
       return {
-        apples: !valid.apples,
+        apples: !data.apples,
       };
     };
 
-    const map = convert(customValidator)(customMapper);
+    const shift = convert(customValidator)(customMapper);
 
-    await expect(map(input)).resolves.toEqual({
+    await expect(shift(input)).resolves.toEqual({
       apples: false,
     });
   });

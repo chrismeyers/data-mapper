@@ -4,7 +4,7 @@ const dataShifter = require('..');
 
 const { convert } = dataShifter;
 
-const input = {
+const data = {
   word: 'gnitset',
 };
 
@@ -12,16 +12,14 @@ const customValidator = yup.object().shape({
   word: yup.string().required(),
 });
 
-const customMapper = async (data, validator) => {
-  const valid = await validator.validate(data);
-
+const customMapper = (valid) => {
   return {
     reversed: [...valid.word].reverse().join(''),
   };
 };
 
-const map = convert(customValidator)(customMapper);
+const shift = convert(customValidator)(customMapper);
 
-map(input)
+shift(data)
   .then((result) => console.log(result))
   .catch((error) => console.error(error.errors));

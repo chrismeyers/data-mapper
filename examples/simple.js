@@ -4,16 +4,21 @@ const dataShifter = require('..');
 const { convert } = dataShifter;
 const { resolveValidator, resolveMapper } = dataShifter.resolvers;
 
-const input = {
+const data = {
   temp: 17,
 };
 
 try {
-  const map = convert(resolveValidator('c'))(resolveMapper('f'));
+  const validator = resolveValidator('c');
+  const mapper = resolveMapper('f');
 
   (async () => {
     try {
-      const result = await map(input);
+      const shift = convert(validator)(mapper);
+      const result = await shift(data);
+      // This can also be done in one line:
+      //   const result = await convert(validator)(mapper)(data);
+
       console.log(result);
     } catch (error) {
       console.error(error.errors);
