@@ -9,7 +9,7 @@
     "lint": "eslint . --ext .js || true"
   },
   "keywords": [],
-  "author": "",
+  "author": "Chris Meyers <chris@chrismeyers.info> (https://chrismeyers.info)",
   "license": "ISC",
   "dependencies": {
     "yup": "^0.29.3"
