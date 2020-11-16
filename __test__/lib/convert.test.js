@@ -9,10 +9,10 @@ describe('transformation pipeline', () => {
       apples: yup.boolean().required(),
     });
 
-    const customMapper = () => {};
+    const customShifter = () => {};
 
     await expect(
-      convert(customValidator)(customMapper)(input)
+      convert(customValidator)(customShifter)(input)
     ).rejects.toThrow();
   });
 
@@ -23,9 +23,9 @@ describe('transformation pipeline', () => {
       apples: yup.boolean().required(),
     });
 
-    const customMapper = () => {};
+    const customShifter = () => {};
 
-    await expect(convert(customValidator)(customMapper)(input)).resolves;
+    await expect(convert(customValidator)(customShifter)(input)).resolves;
   });
 
   test('if it converts data correctly', async () => {
@@ -35,13 +35,13 @@ describe('transformation pipeline', () => {
       apples: yup.boolean().required(),
     });
 
-    const customMapper = (data) => {
+    const customShifter = (data) => {
       return {
         apples: !data.apples,
       };
     };
 
-    const shift = convert(customValidator)(customMapper);
+    const shift = convert(customValidator)(customShifter);
 
     await expect(shift(input)).resolves.toEqual({
       apples: false,

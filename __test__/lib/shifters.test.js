@@ -1,27 +1,27 @@
 const validators = require('../../lib/validators');
-const mappers = require('../../lib/mappers');
+const shifters = require('../../lib/shifters');
 
-describe('fahrenheit mapper transformation', () => {
+describe('fahrenheit shifter transformation', () => {
   test('if it returns the expected values', () => {
     const input = {
       temp: 17,
     };
 
-    expect(mappers.f(input)).toEqual({
+    expect(shifters.f(input)).toEqual({
       temp: 62.6,
       units: 'fahrenheit',
     });
   });
 });
 
-describe('celsius mapper transformation', () => {
+describe('celsius shifter transformation', () => {
   test('if it returns the expected values', () => {
     const input = {
       temp: 17,
     };
     const validator = validators.f;
 
-    expect(mappers.c(input, validator)).toEqual({
+    expect(shifters.c(input, validator)).toEqual({
       temp: -8.333333333333334,
       units: 'celsius',
     });

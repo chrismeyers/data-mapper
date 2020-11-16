@@ -12,13 +12,13 @@ const customValidator = yup.object().shape({
   word: yup.string().required(),
 });
 
-const customMapper = (valid) => {
+const customShifter = (valid) => {
   return {
     reversed: [...valid.word].reverse().join(''),
   };
 };
 
-const shift = convert(customValidator)(customMapper);
+const shift = convert(customValidator)(customShifter);
 
 shift(data)
   .then((result) => console.log(result))

@@ -1,4 +1,4 @@
-const { resolveValidator, resolveMapper } = require('../../lib/resolvers');
+const { resolveValidator, resolveShifter } = require('../../lib/resolvers');
 
 describe('validator resolution', () => {
   test('if it prevents loading an invalid validator', () => {
@@ -14,16 +14,16 @@ describe('validator resolution', () => {
   });
 });
 
-describe('mapper resolution', () => {
-  test('if it prevents loading an invalid mapper', () => {
+describe('shifter resolution', () => {
+  test('if it prevents loading an invalid shifter', () => {
     expect(() => {
-      resolveMapper('doesNotExist');
+      resolveShifter('doesNotExist');
     }).toThrow();
   });
 
-  test('if it loads a mapper that exists', () => {
+  test('if it loads a shifter that exists', () => {
     expect(() => {
-      resolveMapper('f');
+      resolveShifter('f');
     }).not.toThrow();
   });
 });
