@@ -11,6 +11,7 @@
   "keywords": [],
   "author": "Chris Meyers <chris@chrismeyers.info> (https://chrismeyers.info)",
   "license": "ISC",
+  "repository": "https://github.com/chrismeyers/data-shifter",
   "dependencies": {
     "yup": "^0.29.3"
   },
