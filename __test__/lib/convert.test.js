@@ -28,6 +28,36 @@ describe('transformation pipeline', () => {
     await expect(convert(customValidator)(customShifter)(input)).resolves;
   });
 
+  test('if a custom validator function validates', async () => {
+    const input = {};
+
+    const customValidator = {
+      customValidateFn: () => true,
+    };
+
+    const customShifter = () => {};
+
+    await expect(
+      convert(customValidator, 'customValidateFn')(customShifter)(input)
+    ).resolves;
+  });
+
+  test('if a custom validator function fails to validate', async () => {
+    const input = {};
+
+    const customValidator = {
+      customValidateFn: () => {
+        throw new Error('this should break');
+      },
+    };
+
+    const customShifter = () => {};
+
+    await expect(
+      convert(customValidator, 'customValidateFn')(customShifter)(input)
+    ).rejects.toThrow();
+  });
+
   test('if it converts data correctly', async () => {
     const input = { apples: true };
 
