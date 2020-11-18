@@ -9,7 +9,7 @@ describe('validator resolution', () => {
 
   test('if it loads a validator that exists', () => {
     expect(() => {
-      resolveValidator('c');
+      resolveValidator('temp');
     }).not.toThrow();
   });
 });
@@ -23,7 +23,7 @@ describe('shifter resolution', () => {
 
   test('if it loads a shifter that exists', () => {
     expect(() => {
-      resolveShifter('f');
+      resolveShifter('c2f');
     }).not.toThrow();
   });
 });

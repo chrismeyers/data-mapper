@@ -1,27 +1,35 @@
 const shifters = require('../../lib/shifters');
 
-describe('fahrenheit shifter transformation', () => {
+describe('c2f shifter', () => {
   test('if it returns the expected values', () => {
     const input = {
       temp: 17,
+      units: 'c',
     };
 
-    expect(shifters.f(input)).toEqual({
+    expect(shifters.c2f(input)).toEqual({
       temp: 62.6,
-      units: 'fahrenheit',
+      units: {
+        name: 'fahrenheit',
+        suffix: '°F',
+      },
     });
   });
 });
 
-describe('celsius shifter transformation', () => {
+describe('f2c shifter', () => {
   test('if it returns the expected values', () => {
     const input = {
       temp: 17,
+      units: 'f',
     };
 
-    expect(shifters.c(input)).toEqual({
+    expect(shifters.f2c(input)).toEqual({
       temp: -8.333333333333334,
-      units: 'celsius',
+      units: {
+        name: 'celsius',
+        suffix: '°C',
+      },
     });
   });
 });
