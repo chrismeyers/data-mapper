@@ -4,11 +4,13 @@ This package provides a data validation and transformation pipeline. Due to the 
 ## Usage
 The `convert` module leverages currying to build this pipeline:
 ```js
-const transformed = convert(validator)(shifter)(data);
+const transformed = await convert(validator, fn=validate)(shifter)(data);
 ```
 Where the arguments are:
-- `validator`: A schema validator ([yup](https://github.com/jquense/yup) is used by the provided validators)
-- `shifter`: A function that performs the data transformation
++ `validator`: A schema validator ([yup](https://github.com/jquense/yup) is used by the provided validators)
+  - `fn` (optional): the name of the `validator` function to be called
+  - Any validator with an async `fn` that returns the validated data on success and throws an error on failure can be used
+- `shifter`: A function that performs the transformation and returns the transformed data
 - `data`: An object to be validated and transformed
 
 This package comes with a few predefined validators and shifters which can be obtained using the `resolvers` module ([example](examples/simple.js)), but the real power of this library comes from the fact that the pipeline just acts as a framework that custom validators and shifters can be plugged into ([example](examples/custom.js)).
