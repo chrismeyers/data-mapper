@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable max-classes-per-file */
 const yup = require('yup');
 const convert = require('../../lib/convert');
 
@@ -13,7 +15,7 @@ describe('transformation pipeline', () => {
 
     await expect(
       convert(customValidator)(customShifter)(input)
-    ).rejects.toThrow();
+    ).rejects.toThrow(yup.ValidationError);
   });
 
   test('if it proceeds converting data with the correct shape', async () => {
@@ -25,37 +27,72 @@ describe('transformation pipeline', () => {
 
     const customShifter = () => {};
 
-    await expect(convert(customValidator)(customShifter)(input)).resolves;
+    await expect(
+      convert(customValidator)(customShifter)(input)
+    ).resolves.not.toThrow();
   });
 
   test('if a custom validator function validates', async () => {
     const input = {};
 
     const customValidator = {
-      customValidateFn: () => true,
+      customValidateFn: async () => Promise.resolve({}),
     };
 
     const customShifter = () => {};
 
     await expect(
       convert(customValidator, 'customValidateFn')(customShifter)(input)
-    ).resolves;
+    ).resolves.not.toThrow();
   });
 
   test('if a custom validator function fails to validate', async () => {
     const input = {};
 
     const customValidator = {
-      customValidateFn: () => {
-        throw new Error('this should break');
-      },
+      customValidateFn: async () =>
+        Promise.reject(new Error('this should break')),
     };
 
     const customShifter = () => {};
 
     await expect(
       convert(customValidator, 'customValidateFn')(customShifter)(input)
-    ).rejects.toThrow();
+    ).rejects.toThrow('this should break');
+  });
+
+  test('if a custom validator class validates', async () => {
+    const input = {};
+
+    class CustomValidator {
+      async customValidateMethod() {
+        return Promise.resolve({});
+      }
+    }
+
+    const customValidator = new CustomValidator();
+    const customShifter = () => {};
+
+    await expect(
+      convert(customValidator, 'customValidateMethod')(customShifter)(input)
+    ).resolves.not.toThrow();
+  });
+
+  test('if a custom validator class fails to validate', async () => {
+    const input = {};
+
+    class CustomValidator {
+      async customValidateMethod() {
+        return Promise.reject(new Error('this should break'));
+      }
+    }
+
+    const customValidator = new CustomValidator();
+    const customShifter = () => {};
+
+    await expect(
+      convert(customValidator, 'customValidateMethod')(customShifter)(input)
+    ).rejects.toThrow('this should break');
   });
 
   test('if it converts data correctly', async () => {
