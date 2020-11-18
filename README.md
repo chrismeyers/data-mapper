@@ -9,7 +9,7 @@ const transformed = await convert(validator, fn=validate)(shifter)(data);
 Where the arguments are:
 + `validator`: A schema validator ([yup](https://github.com/jquense/yup) is used by the provided validators)
   - `fn` (optional): the name of the `validator` function to be called
-  - Any validator with an async `fn` that returns the validated data on success and throws an error on failure can be used
+  - Any promise-based validator with a `fn` that resolves with the validated data and rejects with an error can be used
 - `shifter`: A function that performs the transformation and returns the transformed data
 - `data`: An object to be validated and transformed
 
